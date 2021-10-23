@@ -15,6 +15,7 @@ def inicio():  # put application's code here
     dados = response.json()
     return render_template("Inicio.html",info=dados)
 
+
 @app.route('/estados')
 def estados():  # put application's code here
 
@@ -22,6 +23,7 @@ def estados():  # put application's code here
     response = requests.get(url)
     dados = response.json()
     return render_template("estados.html",info=dados)
+
 
 @app.route('/paises')
 def paises():  # put application's code here
