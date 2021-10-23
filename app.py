@@ -6,14 +6,20 @@ app = Flask(__name__)
 
 
 @app.route('/')
-def inicio():  # put application's code here
+def index():  # put application's code here
+    return render_template("index.html")
+
+@app.route('/estado')
+def estado():  # put application's code here
 
     url = "https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/"
-    if(request.args.get("name")):
-        url = "https://covid19-brazil-api.now.sh/api/report/v1/brazil/uf/" + request.args.get("name")
+    uf = request.args.get("q")
+    if(uf):
+        url += uf
+
     response = requests.get(url)
     dados = response.json()
-    return render_template("Inicio.html",info=dados)
+    return render_template("estado.html", info=dados)
 
 
 @app.route('/estados')
